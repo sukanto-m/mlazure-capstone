@@ -2,36 +2,31 @@ from sklearn.linear_model import LogisticRegression
 import argparse
 import os
 import numpy as np
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import accuracy_score
 import joblib
 from sklearn.model_selection import train_test_split
 import pandas as pd
 from azureml.core.run import Run
-from azureml.dataset_factory import TabularDatasetFactory as tdf
+from azureml.data.dataset_factory import TabularDatasetFactory as tdf
 
 #loading the data
 
-file = 'heart_failure_clinical_records_dataset.csv'
+path = 'https://mlstrg158470.blob.core.windows.net/azureml-blobstore-06f25a17-acdb-4e92-9617-ddc4c450113e/UI/09-16-2021_114439_UTC/heart_failure_clinical_records_dataset.csv'
 
-df = pd.read_csv(file)
 
 #data preprocessing
-
-def clean_data(data):
-    x_df = drop.na()
-
-    #separating the target variable
-
-    y_df = x_df.pop('DEATH_EVENT')
-
-    return x_df, y_df
-
-#call the clean_data function on dataset
-x, y = clean_data(df)
-
-#split dataset into train and test sets
-
+ds = Dataset.Tabular.from_delimited_files(path=datastore_path)
+x = ds.to_pandas_dataframe().dropna()
+y = x.pop("DEATH_EVENT")
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3)
+
+
+#ds = tdf.from_delimited_files(path=path)
+
+#datastore_name = 'workspaceblobstore'
+#datastore = Datastore.get(ws, datastore_name)
+#datastore_path = [(datastore, 'UI/09-16-2021_114439_UTC/heart_failure_clinical_records_dataset.csv')]
+#train = pd.concat([x_train, y_train], axis=1)
 
 run = Run.get_context()
 
@@ -53,7 +48,7 @@ def main():
     run.log("Accuracy", np.float(accuracy))
 
     os.makedirs('outputs', exist_ok=True)
-    joblib.dump(value=model, filename='outputs/model_hf01.pkl')
+    joblib.dump(value=model, filename='outputs/model.joblib')
 
 if __name__ == '__main__':
     main()    

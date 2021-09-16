@@ -7,15 +7,16 @@ import joblib
 from sklearn.model_selection import train_test_split
 import pandas as pd
 from azureml.core.run import Run
+from azureml.core import Workspace, Dataset, Datastore 
 from azureml.data.dataset_factory import TabularDatasetFactory as tdf
 
 #loading the data
 
-path = 'https://mlstrg158470.blob.core.windows.net/azureml-blobstore-06f25a17-acdb-4e92-9617-ddc4c450113e/UI/09-16-2021_114439_UTC/heart_failure_clinical_records_dataset.csv'
+path = 'https://raw.githubusercontent.com/sukanto-m/mlazure-capstone/main/heart_failure_clinical_records_dataset.csv'
 
 
 #data preprocessing
-ds = Dataset.Tabular.from_delimited_files(path=datastore_path)
+ds = Dataset.Tabular.from_delimited_files(path=path)
 x = ds.to_pandas_dataframe().dropna()
 y = x.pop("DEATH_EVENT")
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3)

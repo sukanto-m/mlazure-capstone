@@ -3,7 +3,7 @@ import requests
 
 #url for the webservice
 
-uri = ''
+uri = 'http://35241752-c99d-4fdb-8ab5-cc282af7370a.southcentralus.azurecontainer.io/score'
 
 #two samples to test
 #this is randomly constructed for test purposes so I apologise for

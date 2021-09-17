@@ -2,7 +2,7 @@ from sklearn.linear_model import LogisticRegression
 import argparse
 import os
 import numpy as np
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import mean_squared_error
 import joblib
 from sklearn.model_selection import train_test_split
 import pandas as pd
@@ -16,19 +16,24 @@ path = 'https://raw.githubusercontent.com/sukanto-m/mlazure-capstone/main/heart_
 
 
 #data preprocessing
-ds = Dataset.Tabular.from_delimited_files(path=path)
-x = ds.to_pandas_dataframe().dropna()
-y = x.pop("DEATH_EVENT")
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.3)
+def clean_data(df):
+    y = df.pop('DEATH_EVENT')
+    x = df
+    return x,y
 
 
-#ds = tdf.from_delimited_files(path=path)
+
+
+data = tdf.from_delimited_files(path=path)
+data = data.to_pandas_dataframe()
+x,y = clean_data(data)
 
 #datastore_name = 'workspaceblobstore'
 #datastore = Datastore.get(ws, datastore_name)
 #datastore_path = [(datastore, 'UI/09-16-2021_114439_UTC/heart_failure_clinical_records_dataset.csv')]
 #train = pd.concat([x_train, y_train], axis=1)
 
+x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.3)
 run = Run.get_context()
 
 def main():

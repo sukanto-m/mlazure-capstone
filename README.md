@@ -12,16 +12,17 @@ The dataset, downloaded from Kaggle, contains medical data of patients of variou
 This is a classification task to predict mortality by heart failure, expressed by the DEATH_EVENT variable with a binary (0 or 1) outcome
 
 ### Access
-The dataset is uploaded and registered in tabular form on the ML Azire workspaceblobstore. The dataset URL or datastore path can be used to access the data in the Jupyter notebooks used for model training.
+The dataset is uploaded and registered in tabular form on the ML Azure workspaceblobstore. The dataset URL or datastore path can be used to access the data in the Jupyter notebooks used for model training.
 
 
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
-
+The AutoML notebook uses the Python SDK to train a range of models and arrive at the best metric.
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
-
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
+The AutoML run trained a number of models and gave a best accuracy of 88% by the Voting Ensemble classifier (the best model). The parameters are experiment timeout of 30 minutes with max concurrent iterations at 5. Since the dataset passes tests of bias and is balanced, there don't seem to be any needs for improvement as such.
+![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Capstone_Screenshots/Screenshot%202021-09-30%20at%208.18.25%20AM.png)
+![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Capstone_Screenshots/Screenshot%202021-09-30%20at%208.33.06%20AM.png)
+![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Capstone_Screenshots/Screenshot%202021-09-30%20at%209.57.54%20AM.png)
+![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Capstone_Screenshots/Screenshot%202021-09-30%20at%2010.38.38%20AM.png)
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search

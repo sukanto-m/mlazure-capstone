@@ -1,22 +1,19 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
+# Heart Failure Prediction
 
-# Your Project Title Here
-
-*TODO:* Write a short introduction to your project.
-
-## Project Set Up and Installation
-*OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
+This is the capstone project for the Machine Learning Engineer with Microsoft Azure Nanodegree, for which I chose to use the [heart failure prediction dataset](https://www.kaggle.com/andrewmvd/heart-failure-clinical-data) available from Kaggle. World Heart Day was observed recently, and cardiovascular diseases (CVDs) are a leading cause of death globally. The COVID-19 pandemic puts CVD patients at greater risk with co-morbidity. People with cardiovascular disease or who are at high cardiovascular risk (due to the presence of one or more risk factors such as hypertension, diabetes, hyperlipidaemia or already established disease) need early detection and management wherein a machine learning model can be of great help.
 
 ## Dataset
 
 ### Overview
-*TODO*: Explain about the data you are using and where you got it from.
+The dataset, downloaded from Kaggle, contains medical data of patients of various ages and both sexes. There are 12 features, and the other predictor variables apart from age and sex include anaemia (categorical: 0 or 1), creatinine phosphate (numeric: Level of the CPK enzyme in the blood (mcg/L)) and ejection fraction (numeric: Percentage of blood leaving the heart at each contraction). These variables are used to predict whether the patient will survive the heart failure or not (Death Event: 0 (no) or 1(yes)).
+
 
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
+This is a classification task to predict mortality by heart failure, expressed by the DEATH_EVENT variable with a binary (0 or 1) outcome
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
+The dataset is uploaded and registered in tabular form on the ML Azire workspaceblobstore. The dataset URL or datastore path can be used to access the data in the Jupyter notebooks used for model training.
+
 
 ## Automated ML
 *TODO*: Give an overview of the `automl` settings and configuration you used for this experiment

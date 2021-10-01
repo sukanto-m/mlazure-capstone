@@ -21,13 +21,13 @@ The dataset is uploaded and registered in tabular form on the ML Azure workspace
 
 
 ## Automated ML
-The AutoML notebook uses the Python SDK to train a range of models and arrive at the best metric. The AutoML mode runs by training the data on a number of classifier models like decision trees, ensemble learning etc. 
+The AutoML notebook uses the Python SDK to train a range of models and arrive at the best metric. The AutoML mode runs by training the data on a number of classifier models like decision trees, ensemble learning etc. The experiment timeout is set at 30 minutes in order to optimise on costs while the maximum number of cconcurrent iterations is set at 5. The task is classification with the primary metric as accuracy. I've also enabled ONNX compatibility should deep learning
+be used as an alternative.
 ### Results
-The AutoML run trained a number of models and gave a best accuracy of 88% by the Voting Ensemble classifier (the best model). The parameters are experiment timeout of 30 minutes with max concurrent iterations at 5. Since the dataset passes tests of bias and AutoML uses various gradient boosting ensembles to arrive at the best metric, there don't seem to be any needs for improvement as such.
-![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Capstone_Screenshots/Screenshot%202021-09-30%20at%208.18.25%20AM.png)
-![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Capstone_Screenshots/Screenshot%202021-09-30%20at%208.33.06%20AM.png)
-![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Capstone_Screenshots/Screenshot%202021-09-30%20at%209.57.54%20AM.png)
-![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Capstone_Screenshots/Screenshot%202021-09-30%20at%2010.38.38%20AM.png)
+The AutoML run trained a number of models and gave a best accuracy of nearly 88% by the Voting Ensemble classifier (the best model). This ensemble is a family of classifiers with weight intialisations at 0.1 for each sub-classifier. In terms of features this model ranks the 'time' variable of highest importance. The following screenshots show the AutoML run through the RunDetails widget and on the Experiments page of ML Azure Studio. 
+![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Screenshots/Screenshot%202021-10-01%20at%208.23.05%20AM.png)
+![automl](https://github.com/sukanto-m/mlazure-capstone/blob/main/Screenshots/Screenshot%202021-10-01%20at%209.22.31%20AM.png)
+
 
 ## Hyperparameter Tuning
 For the hyperparameter tuning using Hyperdrive, I used SKLearn's Logistic Regression since this is a classification task. I tuned the following 
